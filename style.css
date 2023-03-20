@@ -1,0 +1,39 @@
+.imglogo{
+    height: 5vw;
+    width: 8vw;
+}
+ul{
+    width: 100%;
+}
+/* #inputsrc{
+    width: 100%;
+} */
+.nvr{
+    padding-top: 1rem;
+    width: 70%;
+}
+.nav-l{
+    padding-top: 1rem;
+    width: 30%;
+}
+.itemcategory{
+    text-decoration: none;
+    position: relative;
+    color: black;
+}
+.itemcategory:hover{
+    color: palevioletred;
+}
+.itemcategory:after{
+position: absolute;
+content: "";
+height: 3px;
+width: 0;
+left: 0px;
+bottom: -10px;
+background-color: rgb(226, 50, 80);
+transition: all 0.3s ease;
+}
+.itemcategory:hover:after{
+    width: 100%;
+}
