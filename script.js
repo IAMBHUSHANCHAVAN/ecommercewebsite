@@ -2,13 +2,10 @@ document.addEventListener('DOMContentLoaded',function(){
 async function fetchproduct(url){
 let data = await fetch(url);
 let respnse = await data.json()
-console.log(respnse)
-let str = document.querySelector(".container1")
+// console.log(respnse)
+let str = ""
 for(let i in respnse){
-    console.log(respnse[i].rating.rate);
-    // console.log(respnse[i].description);
-    // console.log(respnse[i].category.id);
-    str.innerHTML = str + `
+    str = str + `
     <div class="col">
     <div class="card" style="width: 18rem;">
     <img src="${respnse[i].image}" class="card-img-top" alt="...">
@@ -26,12 +23,23 @@ for(let i in respnse){
     </ul>
     <div class="card-body">
       <a href="#" class="card-link">buy</a>
-      <a href="#" class="card-link">add to cart</a>
+      <a href="getch.html" class="btn btna card-link">add to cart</a>
     </div>
     </div>
   </div>`
     }
+    document.querySelector(".content").innerHTML=str
+    let hh = document.querySelector(".btn2")
+hh.addEventListener('click',()=>{
+  fetch('https://fakestoreapi.com/products/category/jewelery')
+        .then(res=>res.json())
+        .then(json=>console.log(json))
+      document.getElementsByClassName(".content").innerHTML=str
+})
 }
-fetchproduct('https://fakestoreapi.com/products')
+fetchproduct("https://fakestoreapi.com/products?limit=8")
+
+
+
 })
 
