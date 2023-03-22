@@ -16,6 +16,9 @@ ul{
     padding-top: 1rem;
     width: 30%;
 }
+#displaynot{
+    display: none;
+}
 .itemcategory{
     text-decoration: none;
     position: relative;

@@ -11,7 +11,7 @@ for(let i in respnse){
     <img src="${respnse[i].image}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">${respnse[i].title}</h5>
-      <p class="card-text">${respnse[i].description}</p>
+      <p class="card-text">${respnse[i].description.slice(0,40)}...</p>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">${respnse[i].price}</li>
@@ -29,17 +29,46 @@ for(let i in respnse){
   </div>`
     }
     document.querySelector(".content").innerHTML=str
-    let hh = document.querySelector(".btn2")
-hh.addEventListener('click',()=>{
-  fetch('https://fakestoreapi.com/products/category/jewelery')
-        .then(res=>res.json())
-        .then(json=>console.log(json))
-      document.getElementsByClassName(".content").innerHTML=str
-})
 }
 fetchproduct("https://fakestoreapi.com/products?limit=8")
+// working search bar
+searchhere.addEventListener("click",(e)=>{
+  e.preventDefault()
+  let query = inputsrc.value
+  fetchproduct(`https://fakestoreapi.com/products/category/${query}`)
+})
 
+// search on button
 
+menware.addEventListener("click",(e)=>{
+  e.preventDefault()
+  let y = menware.innerHTML
+  fetchproduct(`https://fakestoreapi.com/products/category/${y}`)
+})
+womenware.addEventListener("click",(e)=>{
+  e.preventDefault()
+  let y = womenware.innerHTML
+  fetchproduct(`https://fakestoreapi.com/products/category/${y}`)
+})
+jewl.addEventListener("click",(e)=>{
+  e.preventDefault()
+  let y = jewl.innerHTML
+  fetchproduct(`https://fakestoreapi.com/products/category/${y}`)
+})
+elect.addEventListener("click",(e)=>{
+  e.preventDefault()
+  let y = elect.innerHTML
+  fetchproduct(`https://fakestoreapi.com/products/category/${y}`)
+})
+viewall.addEventListener("click",(e)=>{
+  e.preventDefault()
+  document.getElementById("displaynot").style.display = "block";
+  document.querySelector(".content").innerHTML=``
+})
+morecart.addEventListener("Click",(e)=>{
+  e.preventDefault()
+  fetchproduct("https://fakestoreapi.com/products?limit=10")
+})
 
 })
 
