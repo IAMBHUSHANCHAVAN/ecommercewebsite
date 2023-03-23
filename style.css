@@ -16,6 +16,9 @@ ul{
     padding-top: 1rem;
     width: 30%;
 }
+.card-img-top{
+    height: 10rem;
+}
 #displaynot{
     display: none;
 }

@@ -31,7 +31,9 @@ for(let i in respnse){
     document.querySelector(".content").innerHTML=str
 }
 fetchproduct("https://fakestoreapi.com/products?limit=8")
+
 // working search bar
+
 searchhere.addEventListener("click",(e)=>{
   e.preventDefault()
   let query = inputsrc.value
@@ -65,10 +67,21 @@ viewall.addEventListener("click",(e)=>{
   document.getElementById("displaynot").style.display = "block";
   document.querySelector(".content").innerHTML=``
 })
-morecart.addEventListener("Click",(e)=>{
-  e.preventDefault()
-  fetchproduct("https://fakestoreapi.com/products?limit=10")
-})
+
+let doc = document.getElementById("morecart")
+doc.addEventListener("click",()=>{
+  if(doc.innerHTML=="showless"){
+    fetchproduct("https://fakestoreapi.com/products?limit=8")
+    doc.innerHTML="more"
+  }
+  else if(doc.innerHTML="more"){
+    fetchproduct(`https://fakestoreapi.com/products`)
+    doc.innerHTML="showless"
+  }
+  else{
+    console.log("error");
+  }
+ })
 
 })
 
