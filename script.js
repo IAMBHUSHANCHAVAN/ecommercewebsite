@@ -1,34 +1,40 @@
 document.addEventListener('DOMContentLoaded',function(){
+  var indices;
 async function fetchproduct(url){
 let data = await fetch(url);
 let respnse = await data.json()
-// console.log(respnse)
 let str = ""
-for(let i in respnse){
-    str = str + `
-    <div class="col">
-    <div class="card" style="width: 18rem;">
-    <img src="${respnse[i].image}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">${respnse[i].title}</h5>
-      <p class="card-text">${respnse[i].description.slice(0,40)}...</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">${respnse[i].price}</li>
-      <li class="list-group-item">${respnse[i].category}</li>
-      <li class="list-group-item d-flex">
-      <i class="fa-solid fa-star"></i>
-      <span id="rateit">&nbsp${respnse[i].rating.rate}&nbsprating</span><span id="countit">Total (${respnse[i].rating.count}) votes</span>
-      </li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">buy</a>
-      <a href="getch.html" class="btn btna card-link">add to cart</a>
-    </div>
-    </div>
-  </div>`
-    }
-    document.querySelector(".content").innerHTML=str
+ indices = respnse.map(element => {
+  
+  // console.log(respnse.indexOf(element))
+  // console.log(element);
+  let storeindex = respnse.indexOf(element)
+  console.log(storeindex);
+  str = str + `
+  <div class="col">
+  <div class="card" style="width: 18rem;">
+  <img src="${element.image}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">${element.title}</h5>
+    <p class="card-text">${element.description.slice(0,40)}...</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">${element.price}</li>
+    <li class="list-group-item">${element.category}</li>
+    <li class="list-group-item d-flex">
+    <i class="fa-solid fa-star"></i>
+    <span id="rateit">&nbsp${element.rating.rate}&nbsprating</span><span id="countit">Total (${element.rating.count}) votes</span>
+    </li>
+  </ul>
+  <div class="card-body">
+  <a href="/getch.html" class="card-link">description</a>
+  <button class="btn" >add to cart</button>
+  </div>
+  </div>
+</div>`
+})   
+
+  document.querySelector(".content").innerHTML= str
 }
 fetchproduct("https://fakestoreapi.com/products?limit=8")
 
@@ -36,7 +42,8 @@ fetchproduct("https://fakestoreapi.com/products?limit=8")
 
 searchhere.addEventListener("click",(e)=>{
   e.preventDefault()
-  let query = inputsrc.value
+  let query = inputsrc.value.toLowerCase()
+  console.log(query);
   fetchproduct(`https://fakestoreapi.com/products/category/${query}`)
 })
 
@@ -64,8 +71,7 @@ elect.addEventListener("click",(e)=>{
 })
 viewall.addEventListener("click",(e)=>{
   e.preventDefault()
-  document.getElementById("displaynot").style.display = "block";
-  document.querySelector(".content").innerHTML=``
+  fetchproduct("https://fakestoreapi.com/products?limit=8")
 })
 
 let doc = document.getElementById("morecart")
@@ -83,5 +89,6 @@ doc.addEventListener("click",()=>{
   }
  })
 
-})
+ // cart js
 
+})
